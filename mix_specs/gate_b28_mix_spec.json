@@ -1,0 +1,44 @@
+{
+  "project": "候機室 (Gate B28)",
+  "target_lufs": -14.0,
+  "true_peak_db": -1.0,
+  "tempo_bpm": 88,
+  "key": "F minor",
+  "minimum_plr": 10.0,
+  "postprocess_notes": {
+    "purpose": "Improve measurable streaming-demo delivery after Lyria generation. This does not replace a human mix engineer with real multitracks.",
+    "default_mode": "master-only",
+    "optional_mode": "demucs-stems"
+  },
+  "mastering": {
+    "codec_mp3_bitrate": "320k",
+    "encoding_true_peak_db": -1.5,
+    "wav_sample_rate": 44100,
+    "wav_channels": 2,
+    "preserve_dynamics": true
+  },
+  "stem_processing": {
+    "bass_mono": true,
+    "bass_gain_db": -0.5,
+    "drums_gain_db": -0.5,
+    "vocals_gain_db": 0.0,
+    "other_gain_db": 0.0,
+    "warning": "Separated stems from a mastered MP3 are approximate and may contain artifacts or bleed."
+  },
+  "audio_sidechain": {
+    "purpose": "No-MIDI audio-triggered ducking for kick/808 conflict reduction.",
+    "preferred_source": "Use clean drum/kick sidechain and bass/808 target stems when available.",
+    "fallback_source": "If only a mixed MP3 is available, spectral mode applies approximate low-band ducking to the full mix.",
+    "mode": "spectral",
+    "duck_db": -4.0,
+    "min_spacing_sec": 0.28,
+    "kick_detection_band_hz": [45, 120],
+    "ducking_band_hz": [45, 190],
+    "warning": "This approximates Trackspacer/Soothe2-style spectral unmasking. It cannot perfectly recreate commercial plugin DSP or recover clean 808/Rhodes separation from a mixed MP3."
+  },
+  "validation": {
+    "max_true_peak_db": -1.0,
+    "target_lufs_tolerance": 1.0,
+    "report_path": "outputs/mastering_report.json"
+  }
+}

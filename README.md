@@ -158,6 +158,63 @@ The full-song flow asks Lyria Pro to use the provided Traditional Chinese lyrics
 outputs/lyric_adherence_report.txt
 ```
 
+## Post-Mix / Mastering Assist
+
+Lyria cannot guarantee DAW-level mix parameters such as exact compressor chains, mono 808, sidechain ducking, de-essing bands, or exact reverb tails. This project includes a post-production assist layer for measurable delivery checks.
+
+Default master-only mode:
+
+```bash
+./run_post_mix.sh outputs/lyria_full_song.mp3
+```
+
+Outputs:
+
+```text
+outputs/lyria_full_song_mastered.wav
+outputs/lyria_full_song_mastered.mp3
+outputs/mastering_report.json
+```
+
+The master-only path uses FFmpeg loudness normalization toward the project target in `mix_specs/gate_b28_mix_spec.json`, then validates loudness, peak, duration, stereo correlation, and detected silence gaps.
+
+Optional stem mode:
+
+```bash
+./run_post_mix.sh outputs/lyria_full_song.mp3 --stems
+```
+
+Stem mode requires `demucs` installed separately. It is approximate because stem separation from a mastered MP3 can create artifacts and bleed. Use it only for demo improvement, not as a substitute for real multitrack mixing.
+
+No-MIDI audio ducking mode:
+
+```bash
+./run_post_mix.sh outputs/lyria_full_song.mp3 --audio-ducking
+```
+
+This runs a pure-audio sidechain pass before mastering:
+
+- detects kick / low-frequency trigger events from audio, not MIDI;
+- applies spectral low-band ducking by default;
+- writes `outputs/lyria_full_song_ducked.wav`;
+- writes `outputs/ducking_report.json`;
+- then masters the ducked WAV to the normal WAV/MP3 outputs.
+
+If you have a cleaner drum or kick stem, use it as the sidechain:
+
+```bash
+SIDECHAIN_PATH=outputs/stems/drums.wav \
+./run_post_mix.sh outputs/stems/bass.wav --audio-ducking
+```
+
+For a more obvious pump, use envelope mode:
+
+```bash
+AUDIO_DUCK_MODE=envelope ./run_post_mix.sh outputs/lyria_full_song.mp3 --audio-ducking
+```
+
+This is designed to close the practical gap between Lyria output and DAW-side mix control without using MIDI. It approximates Trackspacer/Soothe2-style frequency unmasking with local DSP, but it cannot perfectly duplicate commercial plugin behavior or recover clean kick/808/Rhodes separation from a single mixed MP3.
+
 ## Individual Commands
 
 Analyze only:
