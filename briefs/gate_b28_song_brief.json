@@ -1,0 +1,93 @@
+{
+  "title": "候機室",
+  "subtitle": "Gate B28",
+  "target_standard": "Spotify-ready single demo blueprint",
+  "core_positioning": "高成就都市女性，凌晨十二點半離開信義區辦公室，搭捷運回家時耳機裡放的歌。",
+  "core_meaning": "一個從小靠前進活著的人，突然開始懷疑自己是不是只會前進。",
+  "not_this": [
+    "Trap",
+    "Drill",
+    "Emo Rap",
+    "TikTok hi-hat music",
+    "obvious piano ballad",
+    "stock airport sound effects",
+    "artist imitation or soundalike"
+  ],
+  "tempo": {
+    "bpm": 88,
+    "max_bpm": 95,
+    "feel": "walking pace, thinking while moving, not technical showoff flow"
+  },
+  "key": "F minor",
+  "chord_progression": "Fm9 - Ebmaj7 - Dbmaj7 - C7",
+  "main_instrument": "Rhodes Electric Piano",
+  "sound_palette": {
+    "rhodes": "old business hotel texture, slightly cold, lightly grainy",
+    "kick": "thick, round, heartbeat-like, never explosive",
+    "snare": "organic woody snare, conversational, not digital trap",
+    "hihat": "restrained 16th-note pattern with rare short rolls, no dense triplet rolls",
+    "sub_bass": "subway passing underground, large but hidden, supports the headphone space without dominating",
+    "ambience": "recreated airport-like ambience: suitcase wheels, elevator ding, air-conditioning tone, soft bilingual terminal feel",
+    "strings": "very light, emotional saturation in final hook, not loudness explosion"
+  },
+  "vocal_production": {
+    "main_delivery": "Traditional Chinese Mandarin narrative rap, close-mic, almost speaking, no autotune",
+    "processing": "light compression and warm tape saturation",
+    "hook": "restrained half-rap half-melodic hook, first hook only slightly lifted",
+    "backing_vocals": "light distant female harmony, especially final hook ooh layer"
+  },
+  "sections": [
+    {
+      "name": "Intro",
+      "time": "0:00-0:18",
+      "production": "airport-like ambience, soft female announcement panned left/right, Rhodes enters"
+    },
+    {
+      "name": "Verse 1",
+      "production": "sparse office-at-midnight visual: Excel, glass, Taipei night reflection, success but empty"
+    },
+    {
+      "name": "Hook 1",
+      "production": "do not explode; slightly lift with pad and female harmony; leave large blank space"
+    },
+    {
+      "name": "Verse 2",
+      "production": "deeper self-analysis, tighter rap cadence against 88 BPM hesitation"
+    },
+    {
+      "name": "Bridge",
+      "production": "drop drums and bass completely; Rhodes plus plane-engine-like low ambience; four beats of silence after spoken line"
+    },
+    {
+      "name": "Verse 3",
+      "production": "rhythm returns smoothly, emotional setup for final hook"
+    },
+    {
+      "name": "Hook 2",
+      "production": "emotional saturation peak, not loudness peak; add light strings and layered distant female ooh"
+    },
+    {
+      "name": "Outro",
+      "production": "strip to engine ambience, low bass, Rhodes tail; final spoken line with sharp cut, no fade"
+    }
+  ],
+  "lyrics_policy": {
+    "language": "Traditional Chinese Mandarin",
+    "mode": "verbatim where possible",
+    "instructions": [
+      "do not translate to English",
+      "do not use pinyin",
+      "do not rewrite the provided lyrics unless the model must shorten for timing",
+      "preserve section order and the hook wording"
+    ]
+  },
+  "cover_art": {
+    "avoid": [
+      "airplane",
+      "passport",
+      "city night skyline",
+      "blurred MRT window"
+    ],
+    "composition": "a woman in a tailored business suit sitting alone in an airport waiting area, all surrounding chairs empty, flight board refreshing behind her, destinations blurred, only B28 clear and sharp"
+  }
+}

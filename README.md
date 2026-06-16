@@ -125,6 +125,39 @@ Or pass a file directly:
 ./run_pipeline.sh /path/to/reference.mp3
 ```
 
+## Full Song Mode
+
+For a full-song demo, use the `lyria-3-pro-preview` flow. This is separate from the 30-second clip pipeline.
+
+Source assets:
+
+```text
+briefs/gate_b28_song_brief.json
+lyrics/gate_b28_lyrics.md
+```
+
+Build the full-song prompt without calling Lyria:
+
+```bash
+.venv/bin/python build_full_song_prompt.py \
+  --brief briefs/gate_b28_song_brief.json \
+  --lyrics lyrics/gate_b28_lyrics.md \
+  --style-profile style_profile.json \
+  --output outputs/full_song_prompt.txt
+```
+
+Run the full-song pipeline:
+
+```bash
+./run_full_song.sh
+```
+
+The full-song flow asks Lyria Pro to use the provided Traditional Chinese lyrics verbatim where possible, not translate to English, and not use pinyin. Because Lyria may still shorten or rewrite lyrics, the pipeline writes a lyric-adherence report:
+
+```text
+outputs/lyric_adherence_report.txt
+```
+
 ## Individual Commands
 
 Analyze only:
