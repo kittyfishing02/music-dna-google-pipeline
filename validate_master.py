@@ -98,7 +98,7 @@ def silence_detect(path: Path) -> list[dict[str, float]]:
         if start_match:
             pending_start = float(start_match.group(1))
             continue
-        end_match = re.search(r"silence_end: ([0-9.]+) \\| silence_duration: ([0-9.]+)", line)
+        end_match = re.search(r"silence_end:\s*([0-9.]+)\s*\|\s*silence_duration:\s*([0-9.]+)", line)
         if end_match and pending_start is not None:
             silences.append(
                 {
