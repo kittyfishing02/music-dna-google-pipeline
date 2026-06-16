@@ -22,11 +22,12 @@ The prompt builder always adds this safety clause:
 
 ## What It Does
 
-The pipeline has three steps:
+The pipeline now has four steps:
 
 1. **Analyze** a local audio file with Essentia.
-2. **Build** a broad, non-infringing "music DNA" prompt from measurable traits such as tempo, key, timbre, rhythm, energy, and tonal center.
-3. **Generate** a new 30-second MP3 clip with Google Lyria 3 Clip.
+2. **Annotate style** with a reviewed `style_profile.json` that describes genre, instrumentation, groove, vocal style, arrangement, mood, and production texture.
+3. **Build** a broad, non-infringing "music DNA" prompt from Essentia numbers plus the reviewed style profile.
+4. **Generate** a new 30-second MP3 clip with Google Lyria 3 Clip.
 
 Default input:
 
@@ -42,6 +43,7 @@ outputs/generated_prompt.txt
 outputs/lyria_response.txt
 outputs/lyria_clip.mp3
 outputs/lyria_error.txt
+style_profile.json
 ```
 
 ## Requirements
@@ -77,6 +79,30 @@ GEMINI_API_KEY=your_key_here
 ```
 
 Do not commit `.env`.
+
+## Style Profile
+
+The first version of this project used a generic prompt template. That was not enough: Essentia can identify useful numeric traits such as BPM and key, but it does not reliably describe genre, vocal delivery, instruments, arrangement, or production style.
+
+This version requires a style profile before generation. That prevents the system from falling back to hardcoded defaults such as gospel, choir, or piano when the reference track is a different style.
+
+Create one manually:
+
+```bash
+cp style_profile.example.json style_profile.json
+```
+
+Edit `style_profile.json` so it accurately describes the reference track at a broad style level.
+
+Or draft one with Gemini audio analysis:
+
+```bash
+.venv/bin/python annotate_style_with_gemini.py \
+  --input input/reference.mp3 \
+  --output style_profile.json
+```
+
+Always review the generated style profile before running the final generation step. The style profile should describe broad musical traits only; it should not name an artist to imitate, copy lyrics, or request a soundalike.
 
 ## Usage
 
@@ -114,8 +140,17 @@ Build prompt only:
 ```bash
 .venv/bin/python build_prompt.py \
   --analysis outputs/reference_essentia.json \
+  --style-profile style_profile.json \
   --output outputs/generated_prompt.txt \
   --title "reference song"
+```
+
+Write a starter style profile template:
+
+```bash
+.venv/bin/python build_prompt.py \
+  --write-style-template \
+  --style-profile style_profile.json
 ```
 
 Generate with Google Lyria 3 Clip:
@@ -130,7 +165,7 @@ Generate with Google Lyria 3 Clip:
 
 ## How The Prompt Is Built
 
-The prompt builder extracts broad descriptors from Essentia output:
+The prompt builder combines numeric descriptors from Essentia:
 
 - tempo / BPM
 - tonal center and scale
@@ -139,6 +174,17 @@ The prompt builder extracts broad descriptors from Essentia output:
 - RMS and dynamic complexity
 - broad arrangement suggestions
 - safe originality clause
+
+with reviewed style descriptors from `style_profile.json`:
+
+- genre and scene
+- mood
+- instrumentation
+- groove
+- vocal or lead style
+- arrangement arc
+- production texture
+- avoid notes
 
 It does **not** extract or reuse lyrics, melody, hooks, or isolated copyrighted material.
 

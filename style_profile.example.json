@@ -1,0 +1,21 @@
+{
+  "reference_title": "28.mp3",
+  "genre": "replace with accurate genre, e.g. synth-pop, trap, mandopop ballad",
+  "era_or_scene": "replace with production era or scene",
+  "mood": "replace with emotional tone",
+  "instrumentation": [
+    "replace",
+    "with",
+    "actual",
+    "instruments"
+  ],
+  "groove": "replace with drum pattern / rhythmic feel",
+  "vocal_style": "replace with vocal delivery, or 'instrumental' if no vocals",
+  "arrangement": "replace with section arc and density changes",
+  "production_texture": "replace with mix, reverb, distortion, brightness, space",
+  "avoid": [
+    "do not copy melody",
+    "do not copy lyrics",
+    "do not imitate a real artist voice"
+  ]
+}

@@ -5,6 +5,16 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
 INPUT_PATH="${1:-input/reference.mp3}"
+STYLE_PROFILE_PATH="${STYLE_PROFILE_PATH:-style_profile.json}"
+
+PYTHON_BIN="${PYTHON_BIN:-}"
+if [[ -z "$PYTHON_BIN" ]]; then
+  if [[ -x ".venv/bin/python" ]]; then
+    PYTHON_BIN=".venv/bin/python"
+  else
+    PYTHON_BIN="python3"
+  fi
+fi
 
 if [[ -f ".env" ]]; then
   set -a
@@ -19,23 +29,24 @@ if [[ ! -f "$INPUT_PATH" ]]; then
   exit 2
 fi
 
+if [[ ! -f "$STYLE_PROFILE_PATH" ]]; then
+  echo "Missing style profile: $STYLE_PROFILE_PATH" >&2
+  echo "Create one from style_profile.example.json, or draft one with:" >&2
+  echo "  $PYTHON_BIN annotate_style_with_gemini.py --input \"$INPUT_PATH\" --output \"$STYLE_PROFILE_PATH\"" >&2
+  exit 2
+fi
+
 if [[ -z "${GEMINI_API_KEY:-}" && -z "${GOOGLE_API_KEY:-}" ]]; then
   echo "Missing GEMINI_API_KEY or GOOGLE_API_KEY." >&2
   echo "Set one in the current shell before running this script." >&2
   exit 2
 fi
 
-PYTHON_BIN="${PYTHON_BIN:-}"
-if [[ -z "$PYTHON_BIN" ]]; then
-  if [[ -x ".venv/bin/python" ]]; then
-    PYTHON_BIN=".venv/bin/python"
-  else
-    PYTHON_BIN="python3"
-  fi
-fi
-
 "$PYTHON_BIN" analyze_with_essentia.py --input "$INPUT_PATH" --output outputs/reference_essentia.json
-"$PYTHON_BIN" build_prompt.py --analysis outputs/reference_essentia.json --output outputs/generated_prompt.txt
+"$PYTHON_BIN" build_prompt.py \
+  --analysis outputs/reference_essentia.json \
+  --style-profile "$STYLE_PROFILE_PATH" \
+  --output outputs/generated_prompt.txt
 "$PYTHON_BIN" generate_lyria_clip.py \
   --prompt outputs/generated_prompt.txt \
   --audio-output outputs/lyria_clip.mp3 \

@@ -1,0 +1,38 @@
+{
+  "reference_title": "候機室 (Gate B28)",
+  "genre": "Taiwanese Mandarin narrative hip-hop with introspective urban rap storytelling",
+  "era_or_scene": "late-night Taipei office-worker headphone music, polished but intimate, adult streaming-era rap production",
+  "mood": "ambitious, exhausted, reflective, restrained, quietly cinematic, urban, emotionally mature",
+  "target_bpm": 88,
+  "target_key": "F minor",
+  "meter": "4/4",
+  "chord_progression": "Fm9 - Ebmaj7 - Dbmaj7 - C7",
+  "instrumentation": [
+    "Rhodes electric piano with old business hotel texture",
+    "thick but restrained heartbeat-like kick",
+    "woody snare without trap electronic bite",
+    "simple 16th-note hi-hats with rare subtle rolls",
+    "soft subway-like 808/sub bass that vibrates without dominating",
+    "light pad lift in the hook",
+    "very light female backing harmony",
+    "subtle airport ambience recreated with soft announcement-like texture, suitcase wheel feel, elevator ding, air-conditioning tone",
+    "very light strings only for the emotional lift"
+  ],
+  "groove": "88 BPM head-nodding narrative rap groove, not trap, not drill, not emo rap; walking pace, steady and thoughtful, with lots of negative space",
+  "vocal_style": "Traditional Chinese Mandarin spoken-rap delivery, almost conversational in the verses, no autotune, light compression and tape saturation, restrained hook that is half-rap half-melodic",
+  "arrangement": "Intro with soft airport-like ambience and Rhodes. Verse stays sparse and office-at-midnight visual. First hook rises only slightly and leaves blank space. Bridge removes drums and keeps Rhodes plus airplane-engine-like ambience. Final hook lifts emotionally with light strings and stacked female ooh harmony without becoming loud. Outro strips back to engine ambience, Rhodes and low bass, ending with spoken self-talk.",
+  "section_focus": "a 30-second proof-of-style clip covering the intro into the first hook: soft Gate B28 ambience, Rhodes Fm9-Ebmaj7-Dbmaj7-C7 loop, restrained 88 BPM drums, Taiwanese Mandarin spoken-rap texture, and a minimal hook lift around the phrase 下一班飛機 / 飛去哪裡 without copying any existing melody",
+  "production_texture": "clean Spotify-ready mix, warm Rhodes, dry intimate rap vocal, subtle tape saturation, controlled low end, no harsh trap hats, no glossy EDM build, lots of empty space, cinematic late-night transit atmosphere",
+  "language": "Traditional Chinese Mandarin",
+  "lyric_direction": "Use Chinese characters only for vocals. Do not translate to English. Do not use pinyin. Keep lyrics original and close to the Gate B28 theme: ambition, waiting, transfer, office fatigue, not knowing whether moving forward is growth or escape.",
+  "avoid": [
+    "do not imitate any named artist voice, cadence, flow, beat, or melody",
+    "do not make trap, drill, emo rap, TikTok hi-hat music, Future-style 808, or Travis Scott-style atmosphere",
+    "do not use generic airport stock sound effects too literally",
+    "do not use obvious piano ballad tropes",
+    "do not make the first hook explode",
+    "do not translate Chinese lyrics into English",
+    "do not output pinyin",
+    "do not copy melody, lyrics, hook, artist voice, or arrangement signature"
+  ]
+}

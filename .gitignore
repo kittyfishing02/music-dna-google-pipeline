@@ -1,5 +1,6 @@
 .DS_Store
 .env
+style_profile.json
 .venv/
 __pycache__/
 *.pyc
